@@ -1,0 +1,44 @@
+.card-stat-vertical {  
+    display: flex;  
+    flex-direction: column;  
+    align-items: center;  
+    justify-content: center;  
+    padding: 1.5rem;  
+    border-radius: 8px;  
+    background-color: #fff;  
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);  
+    text-align: center;  
+    color: #1B1B1B;  
+  }  
+  
+  .card-stat-vertical .avatar {  
+    width: 48px;  
+    height: 48px;  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+    border-radius: 50%;  
+    margin-bottom: 1rem;  
+  }  
+  
+  .card-stat-vertical .stats {  
+    font-size: 1.5rem;  
+    font-weight: 600;  
+    margin-bottom: 0.5rem;  
+  }  
+  
+  .card-stat-vertical .trend {  
+    display: flex;  
+    align-items: center;  
+    font-size: 0.875rem;  
+    font-weight: 500;  
+    margin-top: 0.5rem;  
+  }  
+  
+  .card-stat-vertical .trend.positive {  
+    color: #4caf50;  
+  }  
+  
+  .card-stat-vertical .trend.negative {  
+    color: #f44336;  
+  }

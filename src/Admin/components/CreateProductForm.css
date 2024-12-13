@@ -1,0 +1,82 @@
+/* CreateProductForm.css */
+
+.createProductContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f4f4f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.input,
+.textarea {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.inputSmall {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    width: calc(50% - 5px);
+    margin-right: 5px;
+}
+
+.textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.sizeGroup {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.addButton {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.submitButton {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
