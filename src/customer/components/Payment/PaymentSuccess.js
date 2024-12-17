@@ -6,7 +6,7 @@ import { updatePayment } from '../../../state/Payment/Action';
 import { Alert, AlertTitle, Grid } from '@mui/material';
 import OrderTracker from '../Order/OrderTracker';
 import AddressCard from '../AddressCard/AddressCard';
-import { Token } from '@mui/icons-material';
+
 
 const PaymentSuccess = () => {
     const [paymentId, setPaymentId] = useState();
@@ -34,7 +34,7 @@ const PaymentSuccess = () => {
     useEffect(() => {
         if (paymentId) {
             const data = { orderId, paymentId };
-            dispatch(getOrderById(orderId,Token));
+            dispatch(getOrderById(orderId,token));
             dispatch(updatePayment(data));
         }
     }, [orderId, paymentId, dispatch]);
