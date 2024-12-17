@@ -18,6 +18,8 @@ export const createPayment = (orderId) => async (dispatch) => {
 
         if (data.paymentLinkUrl) {
             window.location.href = data.paymentLinkUrl;
+
+            console.log("data.paymentLinkUrl", data.paymentLinkUrl)
         }
     } catch (error) {
         dispatch({ type: CREATE_PAYMENT_FAILURE, payload: error.message });
