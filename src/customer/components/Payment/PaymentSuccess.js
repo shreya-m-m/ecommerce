@@ -6,6 +6,7 @@ import { updatePayment } from '../../../state/Payment/Action';
 import { Alert, AlertTitle, Grid } from '@mui/material';
 import OrderTracker from '../Order/OrderTracker';
 import AddressCard from '../AddressCard/AddressCard';
+import { Token } from '@mui/icons-material';
 
 const PaymentSuccess = () => {
     const [paymentId, setPaymentId] = useState();
@@ -14,6 +15,8 @@ const PaymentSuccess = () => {
     const { orderId } = useParams();
     const dispatch = useDispatch();
     const { order } = useSelector(store => store);
+    const token = localStorage.getItem("token");
+
 
     useEffect(() => {
         const urlParam = new URLSearchParams(window.location.search);
@@ -31,7 +34,7 @@ const PaymentSuccess = () => {
     useEffect(() => {
         if (paymentId) {
             const data = { orderId, paymentId };
-            dispatch(getOrderById(orderId));
+            dispatch(getOrderById(orderId,Token));
             dispatch(updatePayment(data));
         }
     }, [orderId, paymentId, dispatch]);
