@@ -20,6 +20,8 @@ const Order = () => {
   const { order } = useSelector(store => store);
   const token = localStorage.getItem("token");
 
+
+  console.log("Orderss ",order)
   // Handle checkbox change to filter based on selected statuses
   const handleCheckboxChange = (value) => {
     setSelectedStatus((prevSelected) =>
@@ -30,7 +32,7 @@ const Order = () => {
   };
 
   useEffect(() => {
-    dispatch(getOrder(token)); // Fetch orders on component mount
+    dispatch(getOrder(token)); 
   }, [dispatch, token]);
 
   // Filter orders based on selected statuses
