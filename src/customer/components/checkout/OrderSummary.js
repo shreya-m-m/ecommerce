@@ -12,6 +12,7 @@ const OrderSummary = () => {
     const dispatch= useDispatch();
     const location=useLocation();
     const {order}=useSelector(store => store);
+    const token = localStorage.getItem("token")
     const searchParams= new URLSearchParams(location.search);
     const orderId=searchParams.get("order_id")
 
@@ -19,7 +20,7 @@ const OrderSummary = () => {
 
     console.log("Orders ", order)
     useEffect(()=>{
-        dispatch(getOrderById(orderId))
+        dispatch(getOrderById(orderId , token))
         console.log("disptaching data..",orderId)
     },[orderId])
     const handlePlaceOrder =() =>{
