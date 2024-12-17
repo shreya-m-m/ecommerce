@@ -360,13 +360,13 @@ export default function ProductDetails() {
 
                         <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
                             {/* Description and details */}
-                            <div>
+                            {/* <div>
                                 <h3 className="sr-only">Description</h3>
 
                                 <div className="space-y-6">
                                     <p className="text-base text-gray-900">{products.product?.description}</p>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="mt-10">
                                 <h3 className="text-sm font-medium text-gray-900">Highlights</h3>

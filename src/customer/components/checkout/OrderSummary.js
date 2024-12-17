@@ -16,6 +16,8 @@ const OrderSummary = () => {
     const orderId=searchParams.get("order_id")
 
     console.log("order_id",orderId)
+
+    console.log("Orders ", order)
     useEffect(()=>{
         dispatch(getOrderById(orderId))
         console.log("disptaching data..",orderId)
