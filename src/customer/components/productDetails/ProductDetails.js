@@ -74,7 +74,7 @@ export default function ProductDetails() {
         console.log("Category Name:", categoryName, "Subcategory Name:", subCategoryName);
 
         switch (categoryName) {
-            case 'clothing ':
+            case 'clothing':
                 switch (subCategoryName) {
                     case 'women_jeans':
                         return [
