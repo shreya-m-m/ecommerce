@@ -15,15 +15,14 @@ const OrderDetails = () => {
 
     // Access order data from the redux store
     const { order } = useSelector(store => store);
-    console.log("Orders", order)
 
     useEffect(() => {
         if (order && order.order_id) {
             dispatch(getOrderById(order.order_id, token));
         }
-    }, [order?.order_id, dispatch, token]); // Ensure dependency on order_id
+    }, [order?.order_id, dispatch, token]); 
 
-    // Guard clause for loading state or empty order data
+    
     if (!order || !order.order_id) {
         return <div>Loading...</div>;
     }
@@ -38,7 +37,7 @@ const OrderDetails = () => {
                 <OrderTracker activeStep={3} />
             </div>
             <Grid className='space-y-5' container>
-                {/* Replace the hardcoded array with actual order items if available */}
+            
                 {order.items?.map((item, index) => (
                     <Grid 
                         key={index}

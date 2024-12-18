@@ -39,6 +39,8 @@ const PaymentSuccess = () => {
         }
     }, [orderId, paymentId, dispatch]);
 
+    console.log('Order ',order)
+
     // Determine the current step for OrderTracker based on order status
     const getOrderStep = () => {
         switch (order?.order?.orderStatus) {

@@ -1,9 +1,9 @@
 import axios from "axios";
 
 
-// export const API_BASE_URL = "https://ecommerce-backend-server.up.railway.app"
+export const API_BASE_URL = "https://ecommerce-backend-server.up.railway.app"
 
-export const API_BASE_URL = "http://localhost:5454"
+// export const API_BASE_URL = "http://localhost:5454"
 
 const token= localStorage.getItem("token");
 

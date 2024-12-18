@@ -35,14 +35,6 @@ export const updatePayment = (reqData) => async (dispatch) => {
     // Log to confirm values
     console.log("Payment ID:", paymentId, "Order ID:", orderId);
 
-    if (!paymentId || !orderId) {
-        console.warn("Missing required parameters: paymentId or orderId");
-        return dispatch({
-            type: UPDATE_PAYMENT_FAILURE,
-            payload: "Missing payment ID or order ID."
-        });
-    }
-
     try {
         const { data } = await api.get(`/api/payments?payment_id=${paymentId}&order_id=${orderId}`);
         console.log("Update Payment data", data);
