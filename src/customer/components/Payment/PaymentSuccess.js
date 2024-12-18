@@ -10,13 +10,13 @@ import AddressCard from '../AddressCard/AddressCard';
 
 const PaymentSuccess = () => {
     const [paymentId, setPaymentId] = useState();
+    const [referenceId, setReferenceId] = useState();
     const [paymentStatus, setPaymentStatus] = useState();
     const navigate = useNavigate();
     const { orderId } = useParams();
     const dispatch = useDispatch();
     const { order } = useSelector(store => store);
     const token = localStorage.getItem("token");
-
 
     useEffect(() => {
         const urlParam = new URLSearchParams(window.location.search);

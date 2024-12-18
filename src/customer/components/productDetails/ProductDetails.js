@@ -75,6 +75,7 @@ export default function ProductDetails() {
 
         switch (categoryName) {
             case 'clothing':
+            case 'Clothing':
                 switch (subCategoryName) {
                     case 'women_jeans':
                         return [
@@ -519,14 +520,14 @@ export default function ProductDetails() {
                 </section>
                 {/* Similar Products */}
                 <section className='pt-10'>
-            <h1 className='py-5 text-xl font-bold text-left'>More Products</h1>
-            <div className='flex flex-wrap gap-5'>
-                {/* Filter products from the Redux store based on the current product's category */}
-                {women_dress.map((item) => (
-                        <HomeSetionCard product={item} /> // Render similar products
-                    ))}
-            </div>
-        </section>
+                    <h1 className='py-5 text-xl font-bold text-left'>More Products</h1>
+                    <div className='flex flex-wrap gap-5'>
+                        {/* Filter products from the Redux store based on the current product's category */}
+                        {women_dress.map((item) => (
+                            <HomeSetionCard product={item} /> // Render similar products
+                        ))}
+                    </div>
+                </section>
 
 
 
