@@ -13,6 +13,7 @@ export const createPayment = (orderId) => async (dispatch) => {
     dispatch({ type: CREATE_PAYMENT_REQUEST });
     try {
         const { data } = await api.post(`/api/payments/${orderId}`, {});
+        console.log("Api Response api",api)
         console.log("create payment data",data)
         dispatch({ type: CREATE_PAYMENT_SUCCESS, payload: data });
 
