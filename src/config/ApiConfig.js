@@ -16,6 +16,6 @@ const api = axios.create({
     }
 });
 
-console.log("Api Response ", api.baseURL)
+console.log("Api Response ", baseURL)
 
 export default api;
