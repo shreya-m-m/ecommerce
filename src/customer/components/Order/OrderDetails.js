@@ -25,10 +25,9 @@ const OrderDetails = () => {
     console.log("Order Id in order Details ",order.order_id)
 
     useEffect(() => {
-        if (order && order.order_id) {
-            dispatch(getOrderById(order.order_id, token));
-        }
-    }, [order?.order_id, dispatch, token]); 
+            dispatch(getOrderById(orderId, token));
+       
+    }, [orderId, dispatch, token]); 
 
     
     if (!order || !order.order_id) {
@@ -38,6 +37,7 @@ const OrderDetails = () => {
       useEffect(() => {
         dispatch(getOrder(token)); 
       }, [dispatch, token]);
+
     return (
         <div className='px:5 lg:px-20'>
             <div>
