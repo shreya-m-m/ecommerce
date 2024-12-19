@@ -15,6 +15,12 @@ const OrderDetails = () => {
 
     // Access order data from the redux store
     const { order } = useSelector(store => store);
+    const searchParams= new URLSearchParams(location.search);
+    const orderId=searchParams.get("order_id")
+
+    console.log("order_id in details ",orderId)
+
+    console.log("Order in details  ", order)
 
     console.log("Order Id in order Details ",order.order_id)
 
