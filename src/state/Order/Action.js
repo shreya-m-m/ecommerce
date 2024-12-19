@@ -39,6 +39,7 @@ export const createOrder = (reqData) => async (dispatch) => {
 export const getOrderById = (orderId,token) => async (dispatch) => {
     dispatch({ type: GET_ORDER_BY_ID_REQUEST });
     try {
+        console.log("Order id in action" , orderId);
         const { data } = await api.get(`/api/orders/account/order/${orderId}`, {  
             headers: {  
                 Authorization: `Bearer ${token}`,  

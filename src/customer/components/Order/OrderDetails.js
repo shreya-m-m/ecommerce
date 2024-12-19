@@ -16,6 +16,8 @@ const OrderDetails = () => {
     // Access order data from the redux store
     const { order } = useSelector(store => store);
 
+    console.log("Order Id in order Details ",order.order_id)
+
     useEffect(() => {
         if (order && order.order_id) {
             dispatch(getOrderById(order.order_id, token));
