@@ -11,6 +11,7 @@ import {
 // Create Payment Action
 export const createPayment = (orderId) => async (dispatch) => {
     dispatch({ type: CREATE_PAYMENT_REQUEST });
+    console.log("Order id in console ", orderId)
     try {
         const { data } = await api.post(`/api/payments/${orderId}`, {});
         console.log("Api Response api",api)
