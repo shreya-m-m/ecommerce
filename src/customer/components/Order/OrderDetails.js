@@ -6,7 +6,7 @@ import { deepPurple } from '@mui/material/colors';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { getOrderById } from '../../../state/Order/Action';
+import { getOrder, getOrderById } from '../../../state/Order/Action';
 
 const OrderDetails = () => {
     const dispatch = useDispatch();
@@ -25,18 +25,20 @@ const OrderDetails = () => {
     console.log("Order Id in order Details ",order.order_id)
 
     useEffect(() => {
+        dispatch(getOrder(token)); 
+      }, [dispatch, token]);
+
+
+    useEffect(() => {
             dispatch(getOrderById(orderId, token));
        
     }, [orderId, dispatch, token]); 
 
     
-    if (!order || !order.order_id) {
+    if (!order || !orderId) {
         return <div>Loading...</div>;
     }
 
-      useEffect(() => {
-        dispatch(getOrder(token)); 
-      }, [dispatch, token]);
 
     return (
         <div className='px:5 lg:px-20'>
