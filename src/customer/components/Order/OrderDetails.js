@@ -35,6 +35,9 @@ const OrderDetails = () => {
         return <div>Loading...</div>;
     }
 
+      useEffect(() => {
+        dispatch(getOrder(token)); 
+      }, [dispatch, token]);
     return (
         <div className='px:5 lg:px-20'>
             <div>
