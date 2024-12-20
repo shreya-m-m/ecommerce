@@ -68,7 +68,6 @@ const PaymentSuccess = () => {
                 <Alert
                     variant='filled'
                     severity='success'
-                    sx={{ mb: 6, width: "fit-content" }}
                 >
                     <AlertTitle>Payment Success</AlertTitle>
                     Congratulations, Your Order has been Placed

@@ -19,7 +19,7 @@ const OrderDetails = () => {
     const { order } = useSelector(store => store);
     console.log("Order in details  ", order)
 
-    console.log("Order Id in order Details ",order.order_id)
+  
 
     useEffect(() => {
         dispatch(getOrder(token)); 
