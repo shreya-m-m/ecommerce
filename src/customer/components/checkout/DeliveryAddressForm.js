@@ -181,6 +181,7 @@ const DeliveryAddressForm = () => {
                                         id="phone_number"
                                         name="phone_number"
                                         label="Phone Number"
+                                        type="number"
                                         fullWidth
                                         autoComplete="tel"
                                         value={formData?.phone_number}
@@ -193,6 +194,7 @@ const DeliveryAddressForm = () => {
                                         id="zipcode"
                                         name="zipcode"
                                         label="Zip Code"
+                                        type="number"
                                         fullWidth
                                         autoComplete="postal-code"
                                         value={formData?.zipcode}

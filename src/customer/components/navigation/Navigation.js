@@ -129,7 +129,7 @@ export default function Navigation() {
                   <img
                     src="/Preview.png"
                     alt="TrendIsta"
-                    className="h-12 w-12 mr-2 transform transition-transform duration-600 group-hover:scale-150"
+                    className="h-12 w-12 mr-2 "
                   />
                  <p className="font-bold text-lg text-[#000080]">TRENDISTA</p>
                 </Link>

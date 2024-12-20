@@ -130,7 +130,7 @@ const RegisterForm = () => {
                             value={password}
                             onChange={handlePasswordChange}
                             error={!passwordValid && password.length > 0}
-                            helperText={!passwordValid && password.length > 0 ? "Password must be at least 8 characters, one uppercase, one number, and one special character." : ""}
+                            helperText={!passwordValid && password.length > 0 ? "Password must be at least 8 characters, one uppercase, one lowercase, one number, and one special character." : ""}
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">

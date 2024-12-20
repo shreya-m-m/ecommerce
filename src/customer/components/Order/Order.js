@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import OrderCard from './OrderCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrder } from '../../../state/Order/Action';
+import OrderDetails from './OrderDetails';
 
 const orderStatus = [
   { label: "Placed", value: "placed" },
@@ -81,6 +82,7 @@ const Order = () => {
                   <div key={orderItem.order_id}>
                     {orderItem.orderItem?.map((item) => (
                       <OrderCard item={item} key={item.orderItem_id} />
+                      
                     ))}
                   </div>
                 ))

@@ -7,7 +7,10 @@ import {
     GET_ORDER_BY_ID_FAILURE,
     GET_ORDER_REQUEST,
     GET_ORDER_SUCCESS,
-    GET_ORDER_FAILURE
+    GET_ORDER_FAILURE,
+    GET_ORDERITEM_BY_ID_REQUEST,
+    GET_ORDERITEM_BY_ID_SUCCESS,
+    GET_ORDERITEM_BY_ID_FAILURE
 } from "./ActionType";
 import api from "../../config/ApiConfig";
 
@@ -81,6 +84,33 @@ export const getOrder = (token) => async (dispatch) => {
         console.log("Catch error:", error);
         dispatch({
             type: GET_ORDER_FAILURE,
+            payload: error.message,
+        });
+    }
+};
+
+export const getOrderItemById = (reqData,token) => async (dispatch) => {
+    dispatch({ type: GET_ORDERITEM_BY_ID_REQUEST });
+    const { orderItemId } = reqData;
+
+    console.log("OrderItem Id ",orderItemId)
+    try {
+        console.log("Order id in action" , orderItemId);
+        const { data } = await api.get(`/api/orders/account/orderItem/${orderItemId}`, {  
+            headers: {  
+                Authorization: `Bearer ${token}`,  
+            },  
+        });  
+        
+        console.log("OrderItem by ID is", data);
+        dispatch({
+            type: GET_ORDERITEM_BY_ID_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        console.log("Catch error:", error);
+        dispatch({
+            type: GET_ORDERITEM_BY_ID_FAILURE,
             payload: error.message,
         });
     }

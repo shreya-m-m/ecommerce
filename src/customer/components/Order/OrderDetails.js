@@ -38,7 +38,7 @@ const OrderDetails = () => {
         <div className='px:5 lg:px-20'>
             <div>
                 <h1 className='font-bold text-xl py-6'>Delivery Address</h1>
-                <AddressCard address={order?.shippingAddress} />
+                <AddressCard address={order.orderItem?.shippingAddress} />
             </div>
             <div className='py-20'>
                 <OrderTracker activeStep={3} />

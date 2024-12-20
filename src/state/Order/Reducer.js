@@ -7,7 +7,10 @@ import {
     GET_ORDER_BY_ID_SUCCESS,
     GET_ORDER_REQUEST,
     GET_ORDER_SUCCESS,
-    GET_ORDER_FAILURE
+    GET_ORDER_FAILURE,
+    GET_ORDERITEM_BY_ID_REQUEST,
+    GET_ORDERITEM_BY_ID_SUCCESS,
+    GET_ORDERITEM_BY_ID_FAILURE
 } from "./ActionType";
 
 const initialState = {
@@ -91,6 +94,28 @@ export const orderReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
+
+            case GET_ORDERITEM_BY_ID_REQUEST:
+                return {
+                    ...state,
+                    loading: true,
+                    error: null
+                };
+    
+            case GET_ORDERITEM_BY_ID_SUCCESS:
+                return {
+                    ...state,
+                    loading: false,
+                    order: action.payload,
+                    error: null
+                };
+    
+            case GET_ORDERITEM_BY_ID_FAILURE:
+                return {
+                    ...state,
+                    loading: false,
+                    error: action.payload
+                };
 
         default:
             return state;

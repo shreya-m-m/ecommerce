@@ -36,7 +36,7 @@ const HomeSetionCarousel = ({data, sectionName}) => {
 
     return (
         <div className='border border-gray'>
-           <h2 className='text-2xl font-extrabold text-gray-800 py-5 text-left'>{sectionName}</h2>
+           <h2 className='text-2xl font-extrabold text-gray-800 py-5 text-left ml-8'>{sectionName}</h2>
             <div className="relative p-5 mx-auto">
                 <AliceCarousel
                     ref={carouselRef}
