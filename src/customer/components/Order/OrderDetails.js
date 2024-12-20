@@ -7,6 +7,7 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { getOrder, getOrderById } from '../../../state/Order/Action';
+import { useParams } from 'react-router-dom';
 
 const OrderDetails = () => {
     const dispatch = useDispatch();
@@ -31,11 +32,6 @@ const OrderDetails = () => {
             dispatch(getOrderById(data));
        
     }, [param.orderId]); 
-
-    
-    if (!order || !orderId) {
-        return <div>Loading...</div>;
-    }
 
 
     return (

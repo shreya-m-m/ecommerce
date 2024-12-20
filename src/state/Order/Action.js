@@ -36,7 +36,7 @@ export const createOrder = (reqData) => async (dispatch) => {
 };
 
 //Get Order by ID Action
-export const getOrderById = (reqData) => async (dispatch) => {
+export const getOrderById = (reqData,token) => async (dispatch) => {
     dispatch({ type: GET_ORDER_BY_ID_REQUEST });
     const { orderId } = reqData;
 
