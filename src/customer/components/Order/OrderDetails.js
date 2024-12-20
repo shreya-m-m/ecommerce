@@ -12,14 +12,10 @@ const OrderDetails = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const token = localStorage.getItem("token");
+     const param = useParams();
 
     // Access order data from the redux store
     const { order } = useSelector(store => store);
-    const searchParams= new URLSearchParams(location.search);
-    const orderId=searchParams.get("order_id")
-
-    console.log("order_id in details ",orderId)
-
     console.log("Order in details  ", order)
 
     console.log("Order Id in order Details ",order.order_id)
@@ -29,10 +25,12 @@ const OrderDetails = () => {
       }, [dispatch, token]);
 
 
+  
     useEffect(() => {
-            dispatch(getOrderById(orderId, token));
+        const data = {orderId: param.orderId}
+            dispatch(getOrderById(data));
        
-    }, [orderId, dispatch, token]); 
+    }, [param.orderId]); 
 
     
     if (!order || !orderId) {

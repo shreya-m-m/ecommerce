@@ -36,8 +36,11 @@ export const createOrder = (reqData) => async (dispatch) => {
 };
 
 //Get Order by ID Action
-export const getOrderById = (orderId,token) => async (dispatch) => {
+export const getOrderById = (redData) => async (dispatch) => {
     dispatch({ type: GET_ORDER_BY_ID_REQUEST });
+    const { orderId } = reqData;
+
+    console.log("Order Id ",orderId)
     try {
         console.log("Order id in action" , orderId);
         const { data } = await api.get(`/api/orders/account/order/${orderId}`, {  
