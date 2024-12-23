@@ -16,11 +16,12 @@ export const createPayment = (orderId) => (dispatch) => {
 
     try {
 
-    const data = axios.post(`${API_BASE_URL}/api/payments/${orderId}`, {})
+    const { data } = axios.post(`${API_BASE_URL}/api/payments/${orderId}`, {})
 
     console.log("Printing the API ", API_BASE_URL)
 
             dispatch({ type: CREATE_PAYMENT_SUCCESS, payload: data });
+            console.log("Are you Null ",data)
 
             // Ensure we have a payment link before redirecting
             if (data.paymentLinkUrl) {
