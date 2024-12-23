@@ -13,11 +13,9 @@ import {
 export const createPayment = (orderId) => (dispatch) => {
     dispatch({ type: CREATE_PAYMENT_REQUEST });
 
-    // Send the request without waiting for the response
-    api
-        .post(`/api/payments/${orderId}`, {})
-        .then((response) => {
-            const data = response.data;
+    try {
+
+    const data = axios.post(`${API_BASE_URL}/api/payments/${orderId}`, {})
 
             dispatch({ type: CREATE_PAYMENT_SUCCESS, payload: data });
 
@@ -28,24 +26,15 @@ export const createPayment = (orderId) => (dispatch) => {
             } else {
                 console.error("Payment link URL not provided in the response");
             }
-        })
-        .catch((error) => {
-            // Handling errors without waiting
-            let errorMessage = "An error occurred";
-
-            if (error.response) {
-                errorMessage = error.response.data.message || "API Error";
-            } else if (error.message) {
-                errorMessage = error.message;
-            }
-
+        }
+        catch(error) {
             dispatch({
                 type: CREATE_PAYMENT_FAILURE,
                 payload: errorMessage,
             });
 
-            console.error(errorMessage);
-        });
+        }
+            
 };
 
 // Update Payment Action
