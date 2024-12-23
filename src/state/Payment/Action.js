@@ -1,4 +1,5 @@
 import api, { API_BASE_URL } from "../../config/ApiConfig";
+
 import {
     CREATE_PAYMENT_REQUEST,
     CREATE_PAYMENT_SUCCESS,
@@ -14,7 +15,7 @@ export const createPayment = (orderId) => async (dispatch) => {
 
     try {
         // Sending the POST request to create payment and retrieve payment link
-        const { data } = await api.post(`${REACT_APP_API_URL}/api/payments/${orderId}`, {});
+        const { data } = await api.post(`/api/payments/${orderId}`, {});
         dispatch({ type: CREATE_PAYMENT_SUCCESS, payload: data });
 
         // Ensure we have a payment link before redirecting
