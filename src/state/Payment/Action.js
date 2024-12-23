@@ -11,12 +11,12 @@ import {
 } from "./ActionType";
 
 // Create Payment Action
-export const createPayment = (orderId) => (dispatch) => {
+export const createPayment = (orderId) => async (dispatch) => {
     dispatch({ type: CREATE_PAYMENT_REQUEST });
 
     try {
 
-    const { data } = api.post(`/api/payments/${orderId}`, {})
+    const { data } = await api.post(`/api/payments/${orderId}`, {})
 
     console.log("Printing the API ", API_BASE_URL)
 
