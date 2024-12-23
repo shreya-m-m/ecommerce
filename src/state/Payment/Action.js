@@ -10,28 +10,42 @@ import {
 } from "./ActionType";
 
 // Create Payment Action
-export const createPayment = (orderId) => async (dispatch) => {
+export const createPayment = (orderId) => (dispatch) => {
     dispatch({ type: CREATE_PAYMENT_REQUEST });
 
-    try {
-        // Sending the POST request to create payment and retrieve payment link
-        const { data } = await api.post(`/api/payments/${orderId}`, {});
-        dispatch({ type: CREATE_PAYMENT_SUCCESS, payload: data });
+    // Send the request without waiting for the response
+    api
+        .post(`/api/payments/${orderId}`, {})
+        .then((response) => {
+            const data = response.data;
 
-        // Ensure we have a payment link before redirecting
-        if (data.paymentLinkUrl) {
+            dispatch({ type: CREATE_PAYMENT_SUCCESS, payload: data });
 
-            console.log("REDIRECTION LINK ",data.paymentLinkUrl)
-            window.location.href = data.paymentLinkUrl; 
-        } else {
-            console.error("Payment link URL not provided in the response");
-        }
-    } catch (error) {
-        dispatch({
-            type: CREATE_PAYMENT_FAILURE,
-            payload: error.response?.data?.message || error.message
+            // Ensure we have a payment link before redirecting
+            if (data.paymentLinkUrl) {
+                console.log("REDIRECTION LINK", data.paymentLinkUrl);
+                window.location.href = data.paymentLinkUrl;
+            } else {
+                console.error("Payment link URL not provided in the response");
+            }
+        })
+        .catch((error) => {
+            // Handling errors without waiting
+            let errorMessage = "An error occurred";
+
+            if (error.response) {
+                errorMessage = error.response.data.message || "API Error";
+            } else if (error.message) {
+                errorMessage = error.message;
+            }
+
+            dispatch({
+                type: CREATE_PAYMENT_FAILURE,
+                payload: errorMessage,
+            });
+
+            console.error(errorMessage);
         });
-    }
 };
 
 // Update Payment Action
