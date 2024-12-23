@@ -7,10 +7,8 @@ import { Alert, AlertTitle, Grid } from '@mui/material';
 import OrderTracker from '../Order/OrderTracker';
 import AddressCard from '../AddressCard/AddressCard';
 
-
 const PaymentSuccess = () => {
     const [paymentId, setPaymentId] = useState();
-    const [referenceId, setReferenceId] = useState();
     const [paymentStatus, setPaymentStatus] = useState();
     const navigate = useNavigate();
     const { orderId } = useParams();
@@ -19,10 +17,10 @@ const PaymentSuccess = () => {
     const token = localStorage.getItem("token");
 
     useEffect(() => {
+        // Extract payment details from the URL
         const urlParam = new URLSearchParams(window.location.search);
         const paymentId = urlParam.get("razorpay_payment_id");
         const paymentStatus = urlParam.get("razorpay_payment_link_status");
-        
 
         console.log("Retrieved Payment ID:", paymentId);
         console.log("Retrieved Payment Status:", paymentStatus);
@@ -32,21 +30,20 @@ const PaymentSuccess = () => {
     }, []);
 
     useEffect(() => {
+        // Dispatch actions to get order details and update payment status
         if (paymentId) {
             const data = { orderId, paymentId };
-            dispatch(getOrderById(orderId,token));
+            dispatch(getOrderById(orderId, token));
             dispatch(updatePayment(data));
         }
-    }, [orderId, paymentId, dispatch]);
-
-    console.log('Order ',order)
+    }, [orderId, paymentId, dispatch, token]);
 
     // Determine the current step for OrderTracker based on order status
     const getOrderStep = () => {
         switch (order?.order?.orderStatus) {
             case 'PLACED':
                 return 1;
-            case '"CONFIRMED"':
+            case 'CONFIRMED':
                 return 2;
             case 'SHIPPED':
                 return 3;
@@ -58,7 +55,7 @@ const PaymentSuccess = () => {
     };
 
     const handleImageClick = () => {
-        // Navigate to the product details page
+        // Navigate to the order details page (relative path)
         navigate("/account/order");
     };
 
@@ -77,7 +74,7 @@ const PaymentSuccess = () => {
             <OrderTracker activeStep={getOrderStep()} />
 
             <Grid container className='space-y-5 py-5 pt-20'>
-                {order.order?.orderItem.map((item, index) => (
+                {order?.order?.orderItem.map((item, index) => (
                     <Grid
                         key={index}
                         container
@@ -109,7 +106,7 @@ const PaymentSuccess = () => {
                             </div>
                         </Grid>
                         <Grid item>
-                            <AddressCard address={order.order?.shippingAddress} />
+                            <AddressCard address={order?.order?.shippingAddress} />
                         </Grid>
                     </Grid>
                 ))}
