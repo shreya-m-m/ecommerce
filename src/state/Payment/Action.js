@@ -31,7 +31,7 @@ export const createPayment = (orderId) => (dispatch) => {
         catch(error) {
             dispatch({
                 type: CREATE_PAYMENT_FAILURE,
-                payload: errorMessage,
+                payload:error.response?.data?.message || error.message,
             });
 
         }
