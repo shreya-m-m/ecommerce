@@ -14,14 +14,14 @@ export const createPayment = (orderId) => async (dispatch) => {
 
     try {
         // Sending the POST request to create payment and retrieve payment link
-        const { data } = await api.post(`${API_BASE_URL}/api/payments/${orderId}`, {});
+        const { data } = await api.post(`${REACT_APP_API_URL}/api/payments/${orderId}`, {});
         dispatch({ type: CREATE_PAYMENT_SUCCESS, payload: data });
 
         // Ensure we have a payment link before redirecting
         if (data.paymentLinkUrl) {
 
             console.log("REDIRECTION LINK ",data.paymentLinkUrl)
-            window.location.href = data.paymentLinkUrl; // Redirect to Razorpay payment link
+            window.location.href = data.paymentLinkUrl; 
         } else {
             console.error("Payment link URL not provided in the response");
         }
