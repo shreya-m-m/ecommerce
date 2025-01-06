@@ -16,6 +16,7 @@ import AccountDetails from '../Admin/components/AccountDetails'
 import AboutUs from '../About'
 import HomeSetionCard from '../customer/components/homeSectionCard/HomeSectionCard'
 import { women_dress } from '../Data/clothing/women_dress'
+import Store from '../Store'
 const CustomerRouter = () => {
     return (
         <div>
@@ -29,7 +30,7 @@ const CustomerRouter = () => {
                 <Route path='/about' element={<AboutUs />}></Route>
                 <Route path="/store"
                     element={
-                      <HomePage />
+                      <Store />
                     } ></Route>
                 <Route path='/cart' element={<Cart />}></Route>
                 <Route path='/wishlist' element={<Wishlist />}></Route>
