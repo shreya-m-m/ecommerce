@@ -39,7 +39,7 @@ const ProductTable = () => {
     };
 
     const handleEditSave = async () => {
-        console.log('Saving product:', editProduct);  // Ensure this has updated data
+        console.log('Saving product:', editProduct);
         if (editProduct) {
             await dispatch(updateProduct(editProduct.product_id, editProduct));
             const data = {
@@ -169,11 +169,36 @@ const ProductTable = () => {
                     /> */}
                     <TextField
                         margin="dense"
+                        label="color"
+                        type="text"
+                        fullWidth
+                        value={editProduct?.color || ''}
+                        onChange={(e) => handleEditChange('color', e.target.value)}
+                    />
+                    <TextField
+                        margin="dense"
                         label="Price"
                         type="number"
                         fullWidth
                         value={editProduct?.price || ''}
                         onChange={(e) => handleEditChange('price', e.target.value)}
+                    />
+
+                    <TextField
+                        margin="dense"
+                        label="Discounted Price"
+                        type="number"
+                        fullWidth
+                        value={editProduct?.discountedPrice || ''}
+                        onChange={(e) => handleEditChange('discountedPrice', e.target.value)}
+                    />
+                    <TextField
+                        margin="dense"
+                        label="Discount Percentage"
+                        type="number"
+                        fullWidth
+                        value={editProduct?.discountPersent || ''}
+                        onChange={(e) => handleEditChange('discountPersent', e.target.value)}
                     />
                     <TextField
                         margin="dense"
@@ -183,6 +208,17 @@ const ProductTable = () => {
                         value={editProduct?.quantity || ''}
                         onChange={(e) => handleEditChange('quantity', e.target.value)}
                     />
+                    <TextField
+                        margin="dense"
+                        label="Description"
+                        type="text" 
+                        fullWidth
+                        value={editProduct?.description || ''}
+                        onChange={(e) => handleEditChange('description', e.target.value)}
+                    />
+
+
+
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleEditClose}>Cancel</Button>

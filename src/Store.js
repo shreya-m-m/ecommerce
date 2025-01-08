@@ -1,26 +1,49 @@
-import React from 'react'
-import MainCarousel from '../../components/homeCarousel/MainCarousel'
-import HomeSetionCarousel from '../../components/HomeSetionCarousel/HomeSetionCarousel.js'
-import { women_dress } from '../../../Data/clothing/women_dress.js'
-import { women_lehenga } from '../../../Data/clothing/women_lehenga.js'
-import { women_salwar } from '../../../Data/clothing/women_salwar.js'
-import { women_saree } from '../../../Data/clothing/women_saree.js'
-import { women_gowns } from '../../../Data/clothing/women_gowns.js'
-import { women_top } from '../../../Data/clothing/women_top.js'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { findProducts } from './state/Product/Action';
+import ProductCard from './customer/components/product/ProductCard';
+
 const Store = () => {
-    return(
-        <div>
-            <div className="space-y-10 py-20 flex flex-col justify-center px-5 lg:px-10">
-                <HomeSetionCarousel data={women_lehenga} sectionName={"Lehenga"}/>
-                <HomeSetionCarousel data={women_salwar} sectionName={"Salwar Kameez"}/>
-                <HomeSetionCarousel data={women_saree} sectionName={"Saree"}/>
-                <HomeSetionCarousel data={women_gowns} sectionName={"Gowns"}/>
-                <HomeSetionCarousel data={women_top} sectionName={"Dresses"}/>
-        
-            </div>
+  const { products, loading } = useSelector((store) => store);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const data = {
+      category: '',
+      colors: [],
+      sizes: [],
+      minPrice: 0,
+      maxPrice: 100000,
+      minDiscount: 0,
+      sort: 'price_low',
+      pageNumber: 0,
+      pageSize: 200,
+    };
+    dispatch(findProducts(data));
+  }, [dispatch]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="spinner-border text-primary" role="status">
+          <span className="sr-only">Loading...</span>
         </div>
+      </div>
+    );
+  }
 
+  return (
+    <div className=" flex flex-col justify-center px-5 lg:px-10">
+      <div className="w-full">
+        <h2 className="text-3xl font-bold text-center text-gray-800 ">Shop Our Latest Products</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-6">
+          {products.products?.content?.map((item, index) => (
+            <ProductCard key={index} product={item} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
-    )
-} 
-export default Store
+export default Store;

@@ -56,15 +56,7 @@ const RegisterForm = () => {
         const result = await dispatch(register(userData));
         setLoading(false);
 
-        if (result.success) {
-            setErrorMessage('');
-           
-        } else {
-            // Set error message after a delay (optional)
-            setTimeout(() => {
-                setErrorMessage(result.error || 'An error occurred, please try again.');
-            }, 2000);
-        }
+      
     };
 
     return (
@@ -113,7 +105,7 @@ const RegisterForm = () => {
                             value={email}
                             onChange={handleEmailChange}
                             error={!emailValid && email.length > 0}
-                            helperText={!emailValid && email.length > 0 ? "Enter a valid email" : ""}
+                            helperText={!emailValid && email.length > 0 ? "Enter a valid email (abc@def.com)" : ""}
                         />
                     </Grid>
                     <Grid item xs={12}>
