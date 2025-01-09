@@ -8,10 +8,10 @@ import OrderDetails from './OrderDetails';
 const orderStatus = [
   { label: "Placed", value: "placed" },
   { label: "Shipped", value: "shipped" },
-  { label: "On the Way", value: "on_the_way" },
+  { label: "Confirmed", value: "confirmed" },
   { label: "Delivered", value: "delivered" },
   { label: "Cancelled", value: "cancelled" },
-  { label: "Return", value: "return" },
+ 
   
 ];
 
