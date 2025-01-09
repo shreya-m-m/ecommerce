@@ -25,7 +25,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { women_top } from '../../../Data/clothing/women_top';
 import { Panorama } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import {findProducts } from '../../../state/Product/Action';
+import { findProducts } from '../../../state/Product/Action';
 
 const sortOptions = [
     { name: 'Price: Low to High', href: '#', current: false },
@@ -82,52 +82,52 @@ export default function Product() {
     const discount = searchParams.get("discount");
     const sortValue = searchParams.get("sort");
     const pageNumber = searchParams.get("page") || 1;
-        // Extract filters from the URL
-        const sizeFilter = searchParams.get('size');
-        const discountFilter = searchParams.get('minDiscount');
-    
-        // Apply filters to your product list or display them in the UI
-        console.log('Size Filter:', sizeFilter);
-        console.log('Discount Filter:', discountFilter);
+    // Extract filters from the URL
+    // const sizeFilter = searchParams.get('size');
+    // const discountFilter = searchParams.get('minDiscount');
+
+    // // Apply filters to your product list or display them in the UI
+    // console.log('Size Filter:', sizeFilter);
+    // console.log('Discount Filter:', discountFilter);
 
 
 
-        const handleFilter = (value, sectionId) => {
-            const searchParams = new URLSearchParams(location.search);
-            let filterValue = searchParams.getAll(sectionId);
-        
-            // Handle discount as a range, split into min and max if needed
-            if (sectionId === "minDiscount" && value.includes("-")) {
-                const [minDiscount, maxDiscount] = value.split("-");
-                searchParams.set("minDiscount", minDiscount);
-                searchParams.set("maxDiscount", maxDiscount);
-                console.log("Discount range set:", minDiscount, maxDiscount);
+    const handleFilter = (value, sectionId) => {
+        const searchParams = new URLSearchParams(location.search);
+        let filterValue = searchParams.getAll(sectionId);
+
+        // Handle discount as a range, split into min and max if needed
+        if (sectionId === "minDiscount" && value.includes("-")) {
+            const [minDiscount, maxDiscount] = value.split("-");
+            searchParams.set("minDiscount", minDiscount);
+            searchParams.set("maxDiscount", maxDiscount);
+            console.log("Discount range set:", minDiscount, maxDiscount);
+        } else {
+            // Handle other filters normally
+            if (filterValue.length > 0 && filterValue[0].split(",").includes(value)) {
+                filterValue = filterValue[0].split(",").filter(item => item !== value);
+
+                if (filterValue.length === 0) {
+                    searchParams.delete(sectionId);
+                    console.log("Deleted filter for ", sectionId);
+                }
+                console.log("Filter removed:", value, sectionId);
             } else {
-                // Handle other filters normally
-                if (filterValue.length > 0 && filterValue[0].split(",").includes(value)) {
-                    filterValue = filterValue[0].split(",").filter(item => item !== value);
-                    
-                    if (filterValue.length === 0) {
-                        searchParams.delete(sectionId);
-                        console.log("Deleted filter for ", sectionId);
-                    }
-                    console.log("Filter removed:", value, sectionId);
-                } else {
-                    filterValue.push(value);
-                    console.log("Filter added:", value, sectionId);
-                }
-        
-                if (filterValue.length > 0) {
-                    searchParams.set(sectionId, filterValue.join(","));
-                }
+                filterValue.push(value);
+                console.log("Filter added:", value, sectionId);
             }
-        
-            const query = searchParams.toString();
-            console.log("Updated query:", query); // For debugging the query
-            navigate({ search: `?${query}` });
-        };
-        
-    
+
+            if (filterValue.length > 0) {
+                searchParams.set(sectionId, filterValue.join(","));
+            }
+        }
+
+        const query = searchParams.toString();
+        console.log("Updated query:", query); // For debugging the query
+        navigate({ search: `?${query}` });
+    };
+
+
     const handleSliderChange = (event, newValue) => {
         setPriceRange(newValue);
         const minPrice = newValue[0];
@@ -152,12 +152,25 @@ export default function Product() {
 
 
     const handleRadioFilterChange = (event, sectionId) => {
-        setSelectedValue(event.target.value);
+        const selectedValue = event.target.value;
+        setSelectedValue(selectedValue);
+    
         const searchParams = new URLSearchParams(location.search);
-        searchParams.set(sectionId, event.target.value);
+    
+        // Handle discount range if the section is "minDiscount"
+        if (sectionId === "minDiscount" && selectedValue.includes("-")) {
+            const [minDiscount, maxDiscount] = selectedValue.split("-").map(Number);
+            searchParams.set("minDiscount", minDiscount);
+          
+        } else {
+            searchParams.set(sectionId, selectedValue);
+        }
+    
         const query = searchParams.toString();
         navigate({ search: `?${query}` });
     };
+
+
     const handlePanginationChange = (event, value) => {
         const searchParams = new URLSearchParams(location.search)
         searchParams.set("page", value);
@@ -170,17 +183,17 @@ export default function Product() {
 
         const data = {
             category: param.lavelThree,
-            colors: colorValue || [],
-            sizes: sizeValue || [],
+            colors: colorValue ? colorValue.split(",") : [],
+            sizes: sizeValue ? sizeValue.split(",") : [],
             minPrice,
             maxPrice,
             minDiscount: discount || 0,
             sort: sortValue || "price",
             pageNumber: pageNumber - 1,
             pageSize: 5,
-        }
-        dispatch(findProducts(data))
-        console.log("dispatching the data is done ", data)
+        };
+        dispatch(findProducts(data));
+        console.log("dispatching the data is done ", data);
     }, [param.lavelThree, colorValue, sizeValue, priceValue, discount, sortValue, pageNumber]);
 
 
@@ -384,22 +397,23 @@ export default function Product() {
                                                             </Typography>
                                                         </div>
                                                     ) : (
-                                                        <FormControl>
+                                                        <FormControl component="fieldset">
                                                             <RadioGroup
-                                                                name={section.id}
-                                                                value={selectedValue}
-                                                                onChange={(e) => handleRadioFilterChange(e, section.id)}
+                                                                name={section.id} 
+                                                                value={selectedValue} 
+                                                                onChange={(e) => handleRadioFilterChange(e, section.id)} 
                                                             >
                                                                 {section.option.map((option, optionIdx) => (
                                                                     <FormControlLabel
-                                                                        key={option.value}
-                                                                        value={option.value}
-                                                                        control={<Radio />}
-                                                                        label={option.label}
+                                                                        key={`${section.id}-${optionIdx}`} 
+                                                                        value={option.value} 
+                                                                        control={<Radio />} 
+                                                                        label={option.label} 
                                                                     />
                                                                 ))}
                                                             </RadioGroup>
                                                         </FormControl>
+
                                                     )}
                                                 </div>
                                             </DisclosurePanel>

@@ -32,20 +32,20 @@ export const filters = [
             { value: "pink", label: "Pink" },
         ],
     },
-    {
-        id: "size",
-        name: "Size",
-        option: [
-            { value: "XS", label: "XS" },
-            { value: "S", label: "S" },
-            { value: "M", label: "M" },
-            { value: "L", label: "L" },
-            { value: "XL", label: "XL" },
-            { value: "semistitched", label: "Semi-Stitched" },
-            { value: "unstitched", label: "Unstitched"},
+    // {
+    //     id: "size",
+    //     name: "Size",
+    //     option: [
+    //         { value: "xs", label: "XS" },
+    //         { value: "s", label: "S" },
+    //         { value: "m", label: "M" },
+    //         { value: "l", label: "L" },
+    //         { value: "xL", label: "XL" },
+    //         { value: "semistitched", label: "Semi-Stitched" },
+    //         { value: "unstitched", label: "Unstitched"},
 
-        ],
-    },
+    //     ],
+    // },
 ];
 
 export const singleFilter = [
@@ -68,36 +68,19 @@ export const singleFilter = [
         },
     },
     
-    {
-        id: "discount",
-        name: "Discount",
-        option: [
-            {
-                "value": "0-10",
-                "label": "0% - 10%"
-            },
-            {
-                "value": "10-20",
-                "label": "10% - 20%"
-            },
-            {
-                "value": "20-30",
-                "label": "20% - 30%"
-            },
-            {
-                "value": "30-50",
-                "label": "30% - 50%"
-            },
-            {
-                "value": "50-70",
-                "label": "50% - 70%"
-            },
-            {
-                "value": "70-100",
-                "label": "70% - 100%"
-            }
-        ],
-    },
+    // {
+    //     id: "minDiscount",
+    //     name: "Discount",
+    //     option: [
+    //         { value: "0-10", label: "0% - 10%" },
+    //         { value: "11-20", label: "11% - 20%" },
+    //         { value: "21-30", label: "21% - 30%" },
+    //         { value: "31-50", label: "31% - 50%" },
+    //         { value: "51-70", label: "51% - 70%" },
+    //         { value: "71-100", label: "71% - 100%" },
+    //     ],
+    // }
+    
     
 
 ]

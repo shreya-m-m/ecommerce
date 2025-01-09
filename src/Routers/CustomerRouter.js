@@ -43,9 +43,7 @@ const CustomerRouter = () => {
                 <Route path='/payment/:orderId' element={<PaymentSuccess />} />
 
 
-                {/*<Checkout />*/}
-                {/*<Order /> */}
-                {/*<OrderDetails />*/}
+              
             </Routes>
             <div className='mt-80'>
                 <Footer />

@@ -16,8 +16,9 @@ import { navigation } from "./navbar";
 import { getUser, logout } from "../../../state/Auth/Action";
 import { getCart } from "../../../state/Cart/Action";
 import AuthModal from "../../Auth/AuthModal";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
 import AccountDetails from "../../../Admin/components/AccountDetails";
+import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -88,7 +89,7 @@ export default function Navigation() {
   const handleLogout = () => {
     handleCloseUserMenu();
     dispatch(logout());
-   
+
   };
   const handleMyOrderClick = () => {
     handleCloseUserMenu();
@@ -96,7 +97,7 @@ export default function Navigation() {
       ? navigate("/admin")
       : navigate("/");
   };
-  const handleProfile = () =>{
+  const handleProfile = () => {
     handleCloseUserMenu();
     navigate('/users/profile')
   }
@@ -131,7 +132,7 @@ export default function Navigation() {
                     alt="TrendIsta"
                     className="h-12 w-12 mr-2 "
                   />
-                 <p className="font-bold text-lg text-[#000080]">TRENDISTA</p>
+                  <p className="font-bold text-lg text-[#000080]">TRENDISTA</p>
                 </Link>
               </div>
 
@@ -268,8 +269,8 @@ export default function Navigation() {
                 </div>
               </Popover.Group>
 
-              <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+              <div className="ml-auto flex">
+                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end ">
                   {auth.user?.firstname ? (
                     <div>
                       <Avatar
@@ -338,7 +339,7 @@ export default function Navigation() {
                 </div> */}
 
                 {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
+                <div className="ml-2">
                   <Button
                     onClick={() => navigate("/cart")}
                     className="group -m-2 flex items-center p-2"
@@ -347,27 +348,41 @@ export default function Navigation() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      {cart.cart?.totalItem}
+                    <span className="absolute left-1/2 top-full mt-2 hidden -translate-x-1/2 bg-gray-900 text-white text-sm px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 group-hover:inline-block">
+                      Cart
                     </span>
-                    <span className="sr-only">items in cart, view bag</span>
                   </Button>
                 </div>
-                <div className="ml-4 flow-root lg:ml-6">
+                <div className="">
                   <Button
                     onClick={() => navigate("/wishlist")}
                     className="group -m-2 flex items-center p-2"
                   >
-                    <FavoriteIcon
+                    <FavoriteBorderSharpIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      {cart.cart?.totalItem}
+                    <span className="absolute left-1/2 top-full mt-2 hidden -translate-x-1/2 bg-gray-900 text-white text-sm px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 group-hover:inline-block">
+                      WishList
                     </span>
-                    <span className="sr-only">items in , view bag</span>
                   </Button>
                 </div>
+                <div className="">
+                  <Button
+                    onClick={() => navigate("/account/order")}
+                    className="group -m-2 flex items-center p-2"
+                  >
+                    <LocalMallOutlinedIcon
+                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                    {/* Tooltip */}
+                    <span className="absolute left-1/2 top-full mt-2 hidden -translate-x-1/2 bg-gray-900 text-white text-sm px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 group-hover:inline-block">
+                      My Order
+                    </span>
+                  </Button>
+                </div>
+
               </div>
             </div>
           </div>

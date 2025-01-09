@@ -1,6 +1,6 @@
 export const mainCarouelData = [
     {
-        image:"https://www.ethnicplus.in/media/mageplaza/bannerslider/banner/image/1/_/1_14.jpg"
+        image:"https://www.ethnicplus.in/media/mageplaza/bannerslider/banner/image/2/_/2_25.jpg"
         
     },
     {
