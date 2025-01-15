@@ -16,7 +16,7 @@ const orderStatus = [
 ];
 
 const Order = () => {
-  const [selectedStatus, setSelectedStatus] = useState([]);  // Keeps track of selected checkboxes
+  const [selectedStatus, setSelectedStatus] = useState([]); 
   const dispatch = useDispatch();
   const { order } = useSelector(store => store);
   const token = localStorage.getItem("token");
